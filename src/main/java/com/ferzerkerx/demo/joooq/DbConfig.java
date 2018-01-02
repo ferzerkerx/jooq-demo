@@ -5,6 +5,7 @@ import org.jooq.SQLDialect;
 import org.jooq.impl.DataSourceConnectionProvider;
 import org.jooq.impl.DefaultConfiguration;
 import org.jooq.impl.DefaultDSLContext;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -18,11 +19,20 @@ import javax.sql.DataSource;
 @Configuration
 public class DbConfig {
 
+
+    @Value("${jooq-demo.pre_populate_db}")
+    private boolean shouldInsertData;
+
     private DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
+        EmbeddedDatabaseBuilder embeddedDatabaseBuilder = new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
-                .addScript("sql/create-db.sql")
-//                .addScript("sql/insert-data.sql") //TODO
+                .addScript("sql/create-db.sql");
+
+        if (shouldInsertData) {
+            embeddedDatabaseBuilder.addScript("sql/insert-data.sql");
+        }
+
+        return embeddedDatabaseBuilder
                 .build();
     }
 

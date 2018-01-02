@@ -20,7 +20,7 @@ public class JoooqApplication implements CommandLineRunner {
     private DSLContext dslContext;
 
 	@Override
-	public void run(String... strings) throws Exception {
+	public void run(String... strings) {
         Result<Record> result = dslContext.select().from(Tables.ARTIST).fetch();
 
         for (Record r : result) {
