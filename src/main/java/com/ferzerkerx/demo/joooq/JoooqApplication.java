@@ -7,20 +7,21 @@ import org.jooq.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import javax.annotation.PostConstruct;
+
 @SpringBootApplication
-public class JoooqApplication implements CommandLineRunner {
+public class JoooqApplication {
 
     private static final Logger LOG =  LoggerFactory.getLogger(JoooqApplication.class);
 
     @Autowired
     private DSLContext dslContext;
 
-	@Override
-	public void run(String... strings) {
+    @PostConstruct
+	public void doSimpleJooqQuery() {
         Result<Record> result = dslContext.select().from(Tables.ARTIST).fetch();
 
         for (Record r : result) {
