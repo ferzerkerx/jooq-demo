@@ -29,6 +29,7 @@ public class DbConfig {
                 .addScript("sql/create-db.sql");
 
         if (shouldInsertData) {
+
             embeddedDatabaseBuilder.addScript("sql/insert-data.sql");
         }
 
