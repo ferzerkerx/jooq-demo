@@ -1,0 +1,22 @@
+language: java
+jdk:
+  - oraclejdk8
+
+addons:
+  sonarcloud:
+    organization: "ferzerkerx-github"
+    token:
+      secure:
+env:
+  secure:
+
+install:
+  - "mvn clean compile"
+  - "npm install -g snyk"
+
+script:
+  - "mvn -Dmaven.test.failure.ignore=false org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar"
+  - "snyk test"
+
+after_success:
+  - snyk monitor
