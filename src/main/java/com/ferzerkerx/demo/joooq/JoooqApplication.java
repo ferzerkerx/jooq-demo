@@ -17,8 +17,12 @@ public class JoooqApplication {
 
     private static final Logger LOG =  LoggerFactory.getLogger(JoooqApplication.class);
 
+    private final DSLContext dslContext;
+
     @Autowired
-    private DSLContext dslContext;
+    public JoooqApplication(DSLContext dslContext) {
+        this.dslContext = dslContext;
+    }
 
     @PostConstruct
 	public void doSimpleJooqQuery() {
