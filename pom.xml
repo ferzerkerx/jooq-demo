@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.9.RELEASE</version>
+        <version>2.1.2.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -67,7 +67,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.197</version>
+            <version>1.4.198</version>
         </dependency>
 
         <dependency>
@@ -120,7 +120,7 @@
                     <dependency>
                         <groupId>com.h2database</groupId>
                         <artifactId>h2</artifactId>
-                        <version>1.4.196</version>
+                        <version>1.4.198</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -141,9 +141,9 @@
                                 <password></password>
                             </jdbc>
                             <generator>
-                                <name>org.jooq.util.JavaGenerator</name>
+                                <name>org.jooq.codegen.JavaGenerator</name>
                                 <database>
-                                    <name>org.jooq.util.h2.H2Database</name>
+                                    <name>org.jooq.meta.h2.H2Database</name>
                                     <inputSchema>PUBLIC</inputSchema>
                                     <includes>.*</includes>
                                     <excludes></excludes>
